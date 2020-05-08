@@ -1,11 +1,27 @@
 #include "application.h"
 
 static int AppDoAction(pApplication app, int action);
+static int AppCheckSettings(pApplication app);
 
 void AppInitialize(pApplication app) {
 	app->UI = UIInitialize();
 	UIAbout(app->UI);
-	app->settings = SettingsInitialize();
+	int isSettings = 0;
+	while (!isSettings) {
+		app->settings = SettingsInitialize();
+		isSettings = AppCheckSettings(app);
+	}
+}
+
+int AppCheckSettings(pApplication app) {
+	int isSettings = 1;
+	int maxAnimalsCount = app->settings->rab2 + app->settings->wlf_m2 + app->settings->wlf_f2;
+	int placesAnimals = app->settings->map_length * app->settings->map_length;
+	if (maxAnimalsCount >= placesAnimals) {
+		UIError(app->UI, "ћаксимальное количество животных превышает вместимость острова");
+		isSettings = 0;
+	}
+	return isSettings;
 }
 
 int AppRun(pApplication app) {
