@@ -1,0 +1,26 @@
+# ninja log v5
+3	666	610579441	CMakeFiles/CourseWork_Final.dir/main.c.obj	ddb6759807193176
+1	667	610579441	CMakeFiles/CourseWork_Final.dir/application.c.obj	681d6dd6a800a201
+44	2168	610652984	CMakeFiles/CourseWork_Final.dir/userinterface.c.obj	f4e869a5d3b541e2
+1	86	610653880	CMakeFiles/CourseWork_Final.dir/application.c.obj	681d6dd6a800a201
+0	51	610653984	CMakeFiles/CourseWork_Final.dir/main.c.obj	ddb6759807193176
+3	78	610653984	CMakeFiles/CourseWork_Final.dir/userinterface.c.obj	f4e869a5d3b541e2
+78	777	610653985	CourseWork_Final.exe	d38967ffa32c1f97
+0	56	610654032	CMakeFiles/CourseWork_Final.dir/main.c.obj	ddb6759807193176
+56	440	610654032	CourseWork_Final.exe	d38967ffa32c1f97
+0	74	610654122	CMakeFiles/CourseWork_Final.dir/userinterface.c.obj	f4e869a5d3b541e2
+74	595	610654123	CourseWork_Final.exe	d38967ffa32c1f97
+0	310	610654806	CMakeFiles/CourseWork_Final.dir/application.c.obj	681d6dd6a800a201
+310	721	610654806	CourseWork_Final.exe	d38967ffa32c1f97
+0	76	610655174	CMakeFiles/CourseWork_Final.dir/application.c.obj	681d6dd6a800a201
+2	95	610655174	CMakeFiles/CourseWork_Final.dir/userinterface.c.obj	f4e869a5d3b541e2
+95	434	610655174	CourseWork_Final.exe	d38967ffa32c1f97
+0	60	610655234	CMakeFiles/CourseWork_Final.dir/application.c.obj	681d6dd6a800a201
+2	83	610655234	CMakeFiles/CourseWork_Final.dir/userinterface.c.obj	f4e869a5d3b541e2
+83	420	610655235	CourseWork_Final.exe	d38967ffa32c1f97
+1	58	610655270	CMakeFiles/CourseWork_Final.dir/application.c.obj	681d6dd6a800a201
+59	418	610655270	CourseWork_Final.exe	d38967ffa32c1f97
+0	75	610655711	CMakeFiles/CourseWork_Final.dir/application.c.obj	681d6dd6a800a201
+3	106	610655711	CMakeFiles/CourseWork_Final.dir/userinterface.c.obj	f4e869a5d3b541e2
+4	146	610655711	CMakeFiles/CourseWork_Final.dir/settings.c.obj	1c1a46954f3a19f3
+146	616	610655711	CourseWork_Final.exe	de45e4c7ddaf0966
