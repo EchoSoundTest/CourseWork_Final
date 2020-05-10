@@ -3,13 +3,17 @@
 
 #include "userinterface.h"
 #include "settings.h"
-
-UserInterface;
+#include "animals.h"
+#include "animalsmap.h"
+#include "turn.h"
 
 //	Определяем структурный тип Application
 typedef struct {
 	pUserInterface UI;
-	pSettings settings;
+	Settings settings;
+	pAnimals animals;
+	pAnimCounter animCount;
+	int turnsCount;
 } Application;
 
 //	Определяем указатель типа pApplication на структуру Application

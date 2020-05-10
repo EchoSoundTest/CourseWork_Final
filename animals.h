@@ -18,13 +18,17 @@ typedef struct {
 
 typedef Animals* pAnimals;
 
-const char Animal_symbols[] = { '.', 0x7F, '@', '#' };
-const int Animal_colors[] = { 0, 12, 14, 10 };
+
+//static const char Animal_symbols[4] = { '.', 191, 134, 135 }; 
+static const char Animal_symbols[4] = { ' ', 191, '@', 167 }; 
+static const int Animal_colors[4] = { 0, 2, 4, 8 };
 
 typedef struct {
 	int rab_cnt;
 	int wlf_m_cnt;
 	int wlf_f_cnt;
-} Anim_counter;
+} AnimCounter;
+
+typedef AnimCounter* pAnimCounter;
 
 #endif // !ANIMALS_H

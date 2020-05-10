@@ -4,6 +4,8 @@
 #define DEBUG
 #define _PDEBUG
 
+#include "utils.h"
+
 typedef struct {
 	int map_length;
 	int reprod_chance;
@@ -13,8 +15,8 @@ typedef struct {
 	int wlf_f1, wlf_f2;
 } Settings;
 
-typedef Settings* pSettings;
-
-pSettings SettingsInitialize();
+//	Функция возвращает введенные пользователем настройки
+//	(начальные параметры) модели
+Settings SettingsInitialize();
 
 #endif // !SETTINGS_H

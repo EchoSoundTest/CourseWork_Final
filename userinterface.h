@@ -1,10 +1,17 @@
 #ifndef USERINTERFACE_H
 #define USERINTERFACE_H
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <Windows.h>
+
+#include "animals.h"
+#include "settings.h"
+#include "utils.h"
 
 //	Определяем структурный тип UserInterface
 typedef struct {
-	int dummy;
+	HANDLE hConsole;
 } UserInterface;
 
 //	Определяем указатель типа pUserInterface на структуру UserInterface
@@ -19,6 +26,10 @@ int UIMenu(pUserInterface UI);
 //	Функция возвращает введенное пользователем количество
 //	шагов, которые должна совершить модель
 int UIGetTurnsCount(pUserInterface UI);
+//	Функция вывода карты острова
+void UIDrawMap(pUserInterface UI, pAnimals animals, Settings settings);
+//	Функция вывода количества животных каждого вида
+void UIPrintStats(pUserInterface UI, pAnimCounter animCounter);
 //	Функция вывода возникших ошибок
 void UIError(pUserInterface UI, char* error);
 //	Функция очистки памяти из-под структуры пользовательского интерфейса

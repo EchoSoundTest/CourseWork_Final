@@ -61,6 +61,24 @@ build CMakeFiles\CourseWork_Final.dir\settings.c.obj: C_COMPILER__CourseWork_Fin
   OBJECT_FILE_DIR = CMakeFiles\CourseWork_Final.dir
   TARGET_COMPILE_PDB = CMakeFiles\CourseWork_Final.dir\
   TARGET_PDB = CourseWork_Final.pdb
+build CMakeFiles\CourseWork_Final.dir\animalsmap.c.obj: C_COMPILER__CourseWork_Final ..\animalsmap.c || cmake_object_order_depends_target_CourseWork_Final
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MD /Zi /O2 /Ob1 /DNDEBUG
+  OBJECT_DIR = CMakeFiles\CourseWork_Final.dir
+  OBJECT_FILE_DIR = CMakeFiles\CourseWork_Final.dir
+  TARGET_COMPILE_PDB = CMakeFiles\CourseWork_Final.dir\
+  TARGET_PDB = CourseWork_Final.pdb
+build CMakeFiles\CourseWork_Final.dir\utils.c.obj: C_COMPILER__CourseWork_Final ..\utils.c || cmake_object_order_depends_target_CourseWork_Final
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MD /Zi /O2 /Ob1 /DNDEBUG
+  OBJECT_DIR = CMakeFiles\CourseWork_Final.dir
+  OBJECT_FILE_DIR = CMakeFiles\CourseWork_Final.dir
+  TARGET_COMPILE_PDB = CMakeFiles\CourseWork_Final.dir\
+  TARGET_PDB = CourseWork_Final.pdb
+build CMakeFiles\CourseWork_Final.dir\turn.c.obj: C_COMPILER__CourseWork_Final ..\turn.c || cmake_object_order_depends_target_CourseWork_Final
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MD /Zi /O2 /Ob1 /DNDEBUG
+  OBJECT_DIR = CMakeFiles\CourseWork_Final.dir
+  OBJECT_FILE_DIR = CMakeFiles\CourseWork_Final.dir
+  TARGET_COMPILE_PDB = CMakeFiles\CourseWork_Final.dir\
+  TARGET_PDB = CourseWork_Final.pdb
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CourseWork_Final
@@ -69,7 +87,7 @@ build CMakeFiles\CourseWork_Final.dir\settings.c.obj: C_COMPILER__CourseWork_Fin
 #############################################
 # Link the executable CourseWork_Final.exe
 
-build CourseWork_Final.exe: C_EXECUTABLE_LINKER__CourseWork_Final CMakeFiles\CourseWork_Final.dir\main.c.obj CMakeFiles\CourseWork_Final.dir\application.c.obj CMakeFiles\CourseWork_Final.dir\userinterface.c.obj CMakeFiles\CourseWork_Final.dir\settings.c.obj
+build CourseWork_Final.exe: C_EXECUTABLE_LINKER__CourseWork_Final CMakeFiles\CourseWork_Final.dir\main.c.obj CMakeFiles\CourseWork_Final.dir\application.c.obj CMakeFiles\CourseWork_Final.dir\userinterface.c.obj CMakeFiles\CourseWork_Final.dir\settings.c.obj CMakeFiles\CourseWork_Final.dir\animalsmap.c.obj CMakeFiles\CourseWork_Final.dir\utils.c.obj CMakeFiles\CourseWork_Final.dir\turn.c.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MD /Zi /O2 /Ob1 /DNDEBUG
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
