@@ -134,7 +134,7 @@ void TTurnWolf_M(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimC
 		}
 	}
 
-	if (wolf_f_cnt != 0) {
+	if ((rabbits_cnt == 0) && (wolf_f_cnt != 0)) {
 		num = randomize(1, wolf_f_cnt);
 		index = TPrepareMoving(nearAnims, A_WOLF_F, num);
 		TPlaceNewWolf(anim_arr, cur_anim->x, cur_anim->y, index, settings, animCounter);
