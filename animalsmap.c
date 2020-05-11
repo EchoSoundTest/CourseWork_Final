@@ -3,6 +3,10 @@
 #include "animalsmap.h"
 
 //	Функция случайным образом распределяет животных по карте
+//	pAnimals anim_arr - указатель на массив-карту
+//	Settings settings - настройки
+//	int cur_anim_cnt - количество зверей данного типа
+//	int an_type - тип расставляемых зверей
 void AMPlaceAnimals(pAnimals anim_arr, Settings settings, int cur_anim_cnt, int an_type);
 
 pAnimCounter AMInitializeAnimalCounter() {
@@ -10,12 +14,12 @@ pAnimCounter AMInitializeAnimalCounter() {
 	return anim_cnt;
 }
 
-pAnimals AMGenerateModel(pAnimCounter anim_cnt, Settings settings) {
+pAnimals AMGenerateModel(pAnimCounter animCounter, Settings settings) {
 	int offset;
 	pAnimals animals = (pAnimals)calloc(settings.map_length * settings.map_length, sizeof(Animals));
-	anim_cnt->rab_cnt = randomize(settings.rab1, settings.rab2);
-	anim_cnt->wlf_m_cnt = randomize(settings.wlf_m1, settings.wlf_m2);
-	anim_cnt->wlf_f_cnt = randomize(settings.wlf_f1, settings.wlf_f2);
+	animCounter->rab_cnt = randomize(settings.rab1, settings.rab2);
+	animCounter->wlf_m_cnt = randomize(settings.wlf_m1, settings.wlf_m2);
+	animCounter->wlf_f_cnt = randomize(settings.wlf_f1, settings.wlf_f2);
 
 	for (int mapY = 0; mapY < settings.map_length; mapY++) {
 		for (int mapX = 0; mapX < settings.map_length; mapX++) {
@@ -26,9 +30,9 @@ pAnimals AMGenerateModel(pAnimCounter anim_cnt, Settings settings) {
 		}
 	}
 
-	AMPlaceAnimals(animals, settings, anim_cnt->rab_cnt, A_RABBIT);
-	AMPlaceAnimals(animals, settings, anim_cnt->wlf_m_cnt, A_WOLF_M);
-	AMPlaceAnimals(animals, settings, anim_cnt->wlf_f_cnt, A_WOLF_F);
+	AMPlaceAnimals(animals, settings, animCounter->rab_cnt, A_RABBIT);
+	AMPlaceAnimals(animals, settings, animCounter->wlf_m_cnt, A_WOLF_M);
+	AMPlaceAnimals(animals, settings, animCounter->wlf_f_cnt, A_WOLF_F);
 	return animals;
 }
 

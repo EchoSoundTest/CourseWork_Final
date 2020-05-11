@@ -1,6 +1,9 @@
 #ifndef USERINTERFACE_H
 #define USERINTERFACE_H
 
+//	Модуль "Пользовательский интерфейс" содержит
+//	функции и определения, необходимые для работы с пользователем
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <Windows.h>
@@ -9,13 +12,16 @@
 #include "settings.h"
 #include "utils.h"
 
-//	Определяем структурный тип UserInterface
+//	Определяем структурный тип UserInterface,
+//	отвечающий за работу с пользователем
 typedef struct {
+	//	Дескриптор консоли
 	HANDLE hConsole;
 } UserInterface;
 
 //	Определяем указатель типа pUserInterface на структуру UserInterface
 typedef UserInterface* pUserInterface;
+
 //	Функция возвращает указатель на пользовательский интерфейс
 pUserInterface UIInitialize();
 //	Функция выводит краткую справку о программе
@@ -29,7 +35,7 @@ int UIGetTurnsCount(pUserInterface UI);
 //	Функция вывода карты острова
 void UIDrawMap(pUserInterface UI, pAnimals animals, Settings settings);
 //	Функция вывода количества животных каждого вида
-void UIPrintStats(pUserInterface UI, pAnimCounter animCounter);
+void UIPrintStats(pUserInterface UI, pAnimCounter animCounter, int turnsCount);
 //	Функция вывода возникших ошибок
 void UIError(pUserInterface UI, char* error);
 //	Функция очистки памяти из-под структуры пользовательского интерфейса

@@ -14,11 +14,11 @@ void printFrame(int count, char filler, char frameSymbol) {
 }
 
 void printColoredSymbol(HANDLE hConsole, WORD color, char symbol) {
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	int defColor = 0;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;	//	Информация о настройках вывода консоли пользователя
+	int defColor = 0;					//	Цвет консоли пользователя
 	
 	if (GetConsoleScreenBufferInfo(hConsole, &csbi)) {
-		defColor = csbi.wAttributes;
+		defColor = csbi.wAttributes;	// Получаем цвет консоли пользователя
 	}	
 
 	//	Данная операция позволяет получить цвет фона консоли пользователя
@@ -29,15 +29,15 @@ void printColoredSymbol(HANDLE hConsole, WORD color, char symbol) {
 }
 
 int readIntFromConsole(char * str, int min, int max) {
-	char action[1024];
-	int val;
+	char action[1024];	//	Строка, вводимая пользователем
+	int val;			//	Значение, полученное из строки, введенной пользователем
 
 	if (str != "") {
 		printf("%s (%d-%d): ", str, min, max);
 	}
-	do {
-		scanf("%s", &action);
-	} while ((sscanf(action, "%d", &val) != 1) || (val < min) || (val > max));
+	do {																			//	Получаем введенную пользователем строку
+		scanf("%s", &action);														//	И проверяем ее на то, что это: 1) число
+	} while ((sscanf(action, "%d", &val) != 1) || (val < min) || (val > max));		//	2) число в заданном диапазоне
 
 	return val;
 }

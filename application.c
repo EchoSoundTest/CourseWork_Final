@@ -1,6 +1,6 @@
 #include "application.h"
 
-
+//	Функция запуска инициализации настроек, карты и счетчиков
 void AppStart(pApplication app);
 //	Функция определяет дальнейшую работу приложения на основе
 //	выбранного пользователем пункта меню
@@ -8,7 +8,7 @@ int AppDoAction(pApplication app, int action);
 //	Функция проверяет введенные пользователем настройки
 //	на возможность существования заданной модели
 int AppCheckSettings(pApplication app);
-
+//	Функция вывода текущих настроек модели
 void AppShowSettings(Settings settings);
 
 void AppInitialize(pApplication app) {

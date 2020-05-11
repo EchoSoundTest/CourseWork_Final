@@ -2,6 +2,11 @@
 
 //	Функция-заглушка, необходимая для корректной работы общей функции хода
 //	и используемого массива указателей на функции хода каждого животного
+//	Animals cur_anim - указатель на зверя, вокруг которого надо получить окружающую местность
+//	pAnimals anim_arr - указатель на массив-карту
+//	pAnimCounter animCounter - указатель на счетчик животных
+//	Settings settings - настройки
+//	int map_len - размер карты
 void TTurnVoid(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimCounter animCounter);
 //	Функция хода кролика
 void TTurnRabbit(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimCounter animCounter);
@@ -10,17 +15,27 @@ void TTurnWolf_M(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimC
 //	Функция хода волчицы
 void TTurnWolf_F(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimCounter animCounter);
 //	Функция осуществляет проверку окружающей животное местности
+//	int *id_arr - указатель на массив для записи состояний окружающей местности
 void TCheckNearAnims(Animals cur_anim, pAnimals anim_arr, int *id_arr, int map_len);
 //	Функция отвечает за появление нового волка или волчицы
+//	int X - X-координата волка
+//	int Y - Y-координата волка
+//	int index - индекс выбранной волчицы в массиве состояний окружающей среды
 void TPlaceNewWolf(pAnimals anim_arr, int X, int Y, int index, Settings settings, pAnimCounter animCounter);
 //	Функция осуществляет выбор места на поле,
 //	в которое будет сделан ход животного
+//	int *id_arr - указатель на массив для записи состояний окружающей местности
+//	int turn_type - тип зверя, к которому будет сделан ход
+//	int turn_num - номер зверя данного типа в массиве
 int TPrepareMoving(int *id_arr, int turn_type, int turn_num);
 //	Функция осуществляет перемещение заданного животного в заданное место
+//	int index - индекс клетки, в которую нужно переместить
 pAnimals TMoveAnimal(pAnimals cur_anim, pAnimals anim_arr, int index, int map_len);
-
+//	Функция учета рождения животного в статистике
+//	int animalType - тип родившегося животного
 void TAnimalBorn(pAnimCounter animCounter, int animalType);
-
+//	Функция учета смерти животного в статистике
+//	int animalType - тип умершего животного
 void TAnimalDie(pAnimCounter animCounter, int animalType);
 
 void TTurnManager(pAnimals anim_arr, Settings settings, pAnimCounter animCounter, int turnsCount, int * allTurnsCount) {
@@ -57,18 +72,18 @@ void TTurnVoid(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimCou
 }
 
 void TTurnRabbit(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimCounter animCounter) {
-	int nearAnims[9];
-	int turn_vars = 0;
-	int num;
-	int index;
+	int nearAnims[9];		//	Массив содержимого клеток вокруг животного
+	int turn_vars = 0;		//	Количество вариантов хода
+	int num;				//	Номер выбранного варианта хода
+	int index;				//	Индекс клетки под номером num в массиве nearAnims
 
 	TCheckNearAnims(*cur_anim, anim_arr, nearAnims, settings.map_length);
 	for (int i = 0; i < 9; i++) {
 		if (nearAnims[i] == A_VOID) {
-			turn_vars++;
+			turn_vars++;														//	Определяем количество вариантов хода
 		}
 	}
-	num = randomize(1, turn_vars);
+	num = randomize(1, turn_vars);												//	Определяем номер выбранного варианта хода
 	index = TPrepareMoving(nearAnims, A_VOID, num);
 	TMoveAnimal(cur_anim, anim_arr, index, settings.map_length);
 
@@ -78,8 +93,8 @@ void TTurnRabbit(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimC
 		nearAnims[4] = A_RABBIT;
 		for (int i = 0; i < 9; i++) {
 			if (nearAnims[i] == 0) {
-				turn_vars++;
-			}
+				turn_vars++;													//	Определяем количество клеток, в которых
+			}																	//	может появиться новый кролик
 		}
 		num = randomize(1, turn_vars);
 		for (int i = 0; i < 9; i++) {
@@ -98,13 +113,13 @@ void TTurnRabbit(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimC
 }
 
 void TTurnWolf_M(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimCounter animCounter) {
-	int nearAnims[9];
-	int rabbits_cnt = 0;
-	int voids_cnt = 0;
-	int wolf_f_cnt = 0;
-	int num;
-	int turn_type;
-	int index;
+	int nearAnims[9];		//	Массив содержимого клеток вокруг животного
+	int rabbits_cnt = 0;	//	Количество кроликов вокруг волка
+	int voids_cnt = 0;		//	Количество пустых клеток вокруг волка
+	int wolf_f_cnt = 0;		//	Количество волчиц вокруг волка
+	int num;				//	Номер выбранного варианта хода
+	int turn_type;			//	Тип хода - тип зверя (волчица/заяц/пустота), к которому сходит волк
+	int index;				//	Индекс клетки под номером num в массиве nearAnims
 
 	TCheckNearAnims(*cur_anim, anim_arr, nearAnims, settings.map_length);
 	for (int i = 0; i < 9; i++) {
@@ -147,13 +162,13 @@ void TTurnWolf_M(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimC
 }
 
 void TTurnWolf_F(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimCounter animCounter) {
-	int nearAnims[9];
-	int rabbits_cnt = 0;
-	int voids_cnt = 0;
-	int num;
-	int turn_type;
-	int index = 0;
-
+	int nearAnims[9];			//	Массив содержимого клеток вокруг животного
+	int rabbits_cnt = 0;		//	Количество кроликов вокруг волчицы
+	int voids_cnt = 0;			//	Количество пустых клеток вокруг волчицы
+	int num;					//	Номер выбранного варианта хода
+	int turn_type;				//	Тип хода - тип зверя (заяц/пустота), к которому сходит волчица
+	int index = 0;				//	Индекс клетки под номером num в массиве nearAnims
+								
 	TCheckNearAnims(*cur_anim, anim_arr, nearAnims, settings.map_length);
 	for (int i = 0; i < 9; i++) {
 		if (nearAnims[i] == A_VOID) {
@@ -186,10 +201,10 @@ void TTurnWolf_F(pAnimals cur_anim, pAnimals anim_arr, Settings settings, pAnimC
 }
 
 void TCheckNearAnims(Animals cur_anim, pAnimals anim_arr, int *id_arr, int map_len) {
-	int index = 0;
-	int offset;
-	int offsetX;
-	int offsetY;
+	int index = 0;		//	Индекс клетки в массиве nearAnims по указателю id_arr
+	int offset;			//	Сдвиг указателя anim_arr
+	int offsetX;		//	X-координата клетки под индексом index
+	int offsetY;		//	Y-координата клетки под индексом index
 
 	for (int locY = -1; locY <= 1; locY++) {
 		for (int locX = -1; locX <= 1; locX++) {
@@ -213,15 +228,14 @@ void TCheckNearAnims(Animals cur_anim, pAnimals anim_arr, int *id_arr, int map_l
 }
 
 void TPlaceNewWolf(pAnimals anim_arr, int X, int Y, int index, Settings settings, pAnimCounter animCounter) {
-	int locX = X + index % 3 - 1;
-	int locY = Y + index / 3 - 1;
-	int wolf_gen;
-	int nearAnims[9];
-	int num = 0;
-	int wolf_places = 0;
-	int offset = locX + locY * settings.map_length;;
-	int born = -1;
-	static int a = 0;
+	int locX = X + index % 3 - 1;							//	X-координата волчицы, выбранной волком
+	int locY = Y + index / 3 - 1;							//	Y-координата волчицы, выбранной волком
+	int wolf_gen;											//	Пол волчонка (волк/волчица)
+	int nearAnims[9];										//	Массив содержимого клеток вокруг волчицы
+	int num = 0;											//	Номер выбранной клетки для волчонка
+	int wolf_places = 0;									//	Количество клеток, куда можно установить волчонка
+	int offset = locX + locY * settings.map_length;			//	Сдвиг указателя anim_arr
+	int born = -1;											//	Индекс клетки для рождения волчонка в массиве nearAnim
 
 	TCheckNearAnims(*(anim_arr + offset), anim_arr, nearAnims, settings.map_length);
 	nearAnims[4] = A_WOLF_F;
@@ -234,8 +248,8 @@ void TPlaceNewWolf(pAnimals anim_arr, int X, int Y, int index, Settings settings
 	if ((wolf_places > 0) && (wolf_places < 9)) {
 		num = randomize(1, wolf_places);
 		if ((born = TPrepareMoving(nearAnims, A_VOID, num)) >= 0) {
-			locX = locX + born % 3 - 1;
-			locY = locY + born / 3 - 1;
+			locX = locX + born % 3 - 1;						//	X-координата волчонка
+			locY = locY + born / 3 - 1;						//	Y-координата волчонка
 			offset = locX + locY * settings.map_length;
 			wolf_gen = randomize(A_WOLF_M, A_WOLF_F);
 
@@ -261,9 +275,9 @@ int TPrepareMoving(int *id_arr, int turn_type, int turn_num) {
 }
 
 pAnimals TMoveAnimal(pAnimals cur_anim, pAnimals anim_arr, int index, int map_len) {
-	int locX = index % 3 - 1;
-	int locY = index / 3 - 1;
-	int offset;
+	int locX = index % 3 - 1;		//	X-координата перемещаемого зверя
+	int locY = index / 3 - 1;		//	Y-координата перемещаемого зверя
+	int offset;						//	Сдвиг указателя anim_arr
 
 	if (!((locX == 0) && (locY == 0))) {
 		locX += cur_anim->x;
@@ -275,7 +289,7 @@ pAnimals TMoveAnimal(pAnimals cur_anim, pAnimals anim_arr, int index, int map_le
 		cur_anim->type = A_VOID;
 		return (anim_arr + offset);
 	}
-	return cur_anim;
+	return cur_anim;				// Возвращаем новое положение зверя
 }
 
 void TAnimalBorn(pAnimCounter animCounter, int animalType) {

@@ -1,8 +1,5 @@
 #include "userinterface.h"
 
-//	Функция возвращает выбранный пользователем пункт меню
-//	в основную функцию UIMenu()
-int UIGetAction(pUserInterface UI, int actions_count);
 //	Вспомогательная функция вывода статистики
 void UIPrintStatsHelper(pUserInterface UI, char* animName, int animColor, char animSymbol, int animCount);
 
@@ -52,21 +49,8 @@ int UIMenu(pUserInterface UI) {
 	printf("Выберите действие: ");
 	int action;
 	action = readIntFromConsole("", 0, actions_count);
-	//action = UIGetAction(UI, actions_count);
 	return action;
 }
-
-/*int UIGetAction(pUserInterface UI, int actions_count) {
-	char action[1024];
-	int val;
-	(void)UI;
-	do {
-		scanf("%s", &action);
-	} while ((sscanf(action, "%d", &val) != 1) || (val < 0) || (val > actions_count));
-
-	return val;
-}
-*/
 
 int UIGetTurnsCount(pUserInterface UI) {
 	int turns_count;
