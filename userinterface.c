@@ -56,10 +56,7 @@ int UIGetTurnsCount(pUserInterface UI) {
 	int turns_count;
 	(void)UI;
 	printf("¬ведите количество шагов: ");
-	do {
-		scanf("%d", &turns_count);
-	} while (turns_count < 0);
-
+	turns_count = readIntFromConsole("", 0, MAXINT);
 	return turns_count;
 }
 

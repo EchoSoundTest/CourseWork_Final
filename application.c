@@ -88,7 +88,7 @@ void AppShowSettings(Settings settings) {
 	printf("Текущие настройки:\n");
 	printf("%s: %d x %d клеток\n", "Размер поля", settings.map_length, settings.map_length);
 	printf("%s: %d%%\n", "Шанс размножения кролика", settings.reprod_chance);
-	printf("%s: %dHP\n", "Максимальный уровень жизни волков", settings.wolf_health);
+	printf("%s: %dHP\n", "Начальный уровень жизни волков", settings.wolf_health);
 	printf("%s: %d - %d\n", "Диапазон количества кроликов", settings.rab1, settings.rab2);
 	printf("%s: %d - %d\n", "Диапазон количества волков", settings.wlf_m1, settings.wlf_m2);
 	printf("%s: %d - %d\n", "Диапазон количества волчиц", settings.wlf_f1, settings.wlf_f2);
